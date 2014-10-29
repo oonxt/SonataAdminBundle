@@ -2551,7 +2551,7 @@ abstract class Admin implements AdminInterface, DomainObjectInterface
         $key = md5(json_encode($name) . ($object ? '/'.spl_object_hash($object) : ''));
 
         if (!array_key_exists($key, $this->cacheIsGranted)) {
-            $this->cacheIsGranted[$key] = $this->securityHandler->isGranted($this, $name, $object ?: $this);
+            $this->cacheIsGranted[$key] = $this->securityHandler->isGranted($this, $name, $object ?: $this->getNewInstance());
         }
 
         return $this->cacheIsGranted[$key];
